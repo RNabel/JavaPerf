@@ -1,0 +1,4 @@
+
+public enum Quarter {
+    TOPLEFT, TOPRIGHT, BOTTOMLEFT, BOTTOMRIGHT
+}
