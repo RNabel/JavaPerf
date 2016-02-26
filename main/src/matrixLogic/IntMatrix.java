@@ -1,11 +1,39 @@
+package matrixLogic;
+
+import java.util.Random;
 
 public class IntMatrix {
+    private static int NUMBER_RANGE = 1000;
+    /**
+     * Creates matrix with random entries of order dim.
+     * @param dim {int} The dimension of the matrix.
+     * @return {matrixLogic.IntMatrix} The matrix with random entries.
+     */
+    public static IntMatrix createRandomMatrix(int dim) {
+        return createRandomMatrix(dim, NUMBER_RANGE);
+    }
 
-    private int [][] values;
+    public static IntMatrix createRandomMatrix(int dim, int numberRange) {
+        Random random = new Random();
+        IntMatrix currentMatrix = new IntMatrix(dim);
+
+        // Create random values.
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                int randomEntry = random.nextInt(NUMBER_RANGE);
+                currentMatrix.set(i, j, randomEntry);
+            }
+        }
+
+        return currentMatrix;
+    }
+
+
+        private int [][] values;
 
     /**
      * Creates a square matrix with the given dimension; the matrix is
-     * filled by 0's. Also pad up to the next power of 2.
+     * filled by 0's. Also pad up to the next power of 2. <-- Why?!
      */
     public IntMatrix(int dim) {
         this.values = new int[dim][dim];
@@ -22,7 +50,7 @@ public class IntMatrix {
     }
 
     /**
-     * Returns the dimension of the matrix
+     * Returns the dimension of the matrix.
      */
     public int getDim() {
         return values.length;

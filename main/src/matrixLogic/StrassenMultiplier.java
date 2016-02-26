@@ -1,3 +1,4 @@
+package matrixLogic;
 
 public class StrassenMultiplier implements Multiplier {
 
@@ -16,7 +17,7 @@ public class StrassenMultiplier implements Multiplier {
     }
 
     public String toString() {
-        return "StrassenMultiplier{" + threshold + "," + switchTo + "}";
+        return "matrixLogic.StrassenMultiplier{" + threshold + "," + switchTo + "}";
     }
 
     public IntMatrix multiply(IntMatrix a, IntMatrix b) {
