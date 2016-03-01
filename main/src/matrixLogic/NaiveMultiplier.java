@@ -1,8 +1,9 @@
+package matrixLogic;
 
 public class NaiveMultiplier implements Multiplier {
 
     public String toString() {
-        return "NaiveMultiplier";
+        return "matrixLogic.NaiveMultiplier";
     }
 
     public IntMatrix multiply(IntMatrix a, IntMatrix b) {
