@@ -4,13 +4,13 @@ import matrixLogic.IntMatrix;
 import matrixLogic.Multiplier;
 
 public class Test {
-    private int size;
+    private int dimension;
     private int iterations;
     private Multiplier multiplier;
     private long elapsedTime = -1;
 
-    public Test(int size, int iterations, Multiplier multiplier) {
-        this.size = size;
+    public Test(int dimension, int iterations, Multiplier multiplier) {
+        this.dimension = dimension;
         this.iterations = iterations;
         this.multiplier = multiplier;
     }
@@ -21,8 +21,8 @@ public class Test {
      */
     public long runTest() {
         // Create intMatrices.
-        IntMatrix intMatrixA = IntMatrix.createRandomMatrix(size);
-        IntMatrix intMatrixB = IntMatrix.createRandomMatrix(size);
+        IntMatrix intMatrixA = IntMatrix.createRandomMatrix(dimension);
+        IntMatrix intMatrixB = IntMatrix.createRandomMatrix(dimension);
 
         // Start timer.
         long startTime = System.nanoTime();
@@ -44,8 +44,11 @@ public class Test {
             runTest();
         }
 
-        // CSV Format: matrix size {int}, iterations {int}, elapsed time {long}, average time {double}
-        return size + ", " + iterations + ", " + elapsedTime + ", " + elapsedTime / (double)iterations + "\n";
+        // Get multiplier-specific results.
+        String multiplierSpecification = this.multiplier.toString();
+
+        // CSV Format: matrix dimension {int}, iterations {int}, elapsed time {long}, average time {double}
+        return dimension + ", " + iterations + ", " + elapsedTime + ", " + elapsedTime / (double)iterations + ", " + multiplierSpecification + "\n";
     }
 
     public Multiplier getMultiplier() {

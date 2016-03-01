@@ -2,6 +2,8 @@ import com.sun.org.apache.xpath.internal.operations.Mult;
 import matrixLogic.Multiplier;
 import matrixLogic.NaiveMultiplier;
 import matrixLogic.StrassenMultiplier;
+import testRuns.NaiveRuns;
+import testRuns.StrassenRuns;
 import tester.Test;
 import tester.TestSuite;
 
@@ -17,44 +19,24 @@ public class EntryPoint {
 
     public static void main(String[] args) {
         String output = "";
-        TestSuite[] testSuites = getEquivalentTestSuites(1, 20, 22, 1);
+//        String output = "--- small naive test run ---\n";
+//        TestSuite testSuite = StrassenRuns.createSmallTestWithSmallThreshold();
+//        output += testSuite.runAllTests();
+//        System.out.println("Finished small set.");
+//
+//        writeResultsToFile(output);
+//
+//        output += "--- large naive test run --- \n";
+//        output += StrassenRuns.createLargeTestWithSmallThreshold().runAllTests();
+//        System.out.println("Finished large set.");
+//
+//        writeResultsToFile(output);
 
-        for (int i = 0; i < testSuites.length; i++) {
-            TestSuite currentSuite = testSuites[i];
-            String currentMultiplier = currentSuite.getTest(0).getMultiplier().getClass().toString();
-            output += "\n-------------" + currentMultiplier +"-------------------\n";
-            output += currentSuite.runAllTests();
-        }
+        output += "--- mini variable threshold test --- \n";
+        output+= StrassenRuns.createSmallTestSuiteWithVariableThreshold().runAllTests();
+        System.out.println("Finished threshold set.");
 
         writeResultsToFile(output);
-    }
-
-    private static TestSuite getNaiveTestSuite() {
-        int iterations = 100;
-        Multiplier multiplier = new NaiveMultiplier();
-
-        return TestSuite.createTestSuite(0, 30, 1, iterations, multiplier);
-    }
-
-    private static TestSuite getStrassenTestSuite() {
-        int iterations = 100;
-        Multiplier multiplier = new StrassenMultiplier(null, 0);
-
-        return TestSuite.createTestSuite(0, 30, 1, iterations, multiplier);
-    }
-
-    /**
-     * Creates Naive and Strassen test suites with the same parameters.
-     * @return
-     */
-    private static TestSuite[] getEquivalentTestSuites(int iterations, int minSize, int maxSize, int step) {
-        Multiplier naiveMultiplier = new NaiveMultiplier();
-        Multiplier strassenMultiplier = new StrassenMultiplier(null, 0);
-
-        TestSuite naiveTestSuite = TestSuite.createTestSuite(minSize, maxSize, step, iterations, naiveMultiplier);
-        TestSuite strassenTestSuite = TestSuite.createTestSuite(minSize, maxSize, step, iterations, strassenMultiplier);
-
-        return new TestSuite[]{naiveTestSuite, strassenTestSuite};
     }
 
     private static String getCurrentTimeStamp() {

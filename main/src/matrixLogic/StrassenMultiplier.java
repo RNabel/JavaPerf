@@ -17,7 +17,7 @@ public class StrassenMultiplier implements Multiplier {
     }
 
     public String toString() {
-        return "matrixLogic.StrassenMultiplier{" + threshold + "," + switchTo + "}";
+        return "matrixLogic.StrassenMultiplier, " + threshold + ", " + switchTo;
     }
 
     public IntMatrix multiply(IntMatrix a, IntMatrix b) {

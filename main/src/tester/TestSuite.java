@@ -28,7 +28,7 @@ public class TestSuite {
 
         // Create all test test cases.
         for (int i=startSize; i < maxSize; i += step) {
-            Test newTest = new Test(i * i, iterations, multiplier);
+            Test newTest = new Test(i, iterations, multiplier);
             outputSuite.registerNewTest(newTest);
         }
 

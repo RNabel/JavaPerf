@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class IntMatrix {
     private static int NUMBER_RANGE = 1000;
+
     /**
      * Creates matrix with random entries of order dim.
      * @param dim {int} The dimension of the matrix.
@@ -99,9 +100,7 @@ public class IntMatrix {
         if (oldDim < dim) {
             int[][] values = new int[dim][dim];
             for (int i = 0; i < oldDim; i++) {
-                for (int j = 0; j < oldDim; j++) {
-                    values[i][j] = this.values[i][j];
-                }
+                System.arraycopy(this.values[i], 0, values[i], 0, oldDim);
             }
             this.values = values;
         }
@@ -114,9 +113,7 @@ public class IntMatrix {
     public IntMatrix getSlice(int x, int y, int dim) {
         int[][] values = new int[dim][dim];
         for (int i = 0; i < dim; i++) {
-            for (int j = 0; j < dim; j++) {
-                values[i][j] = this.values[x+i][y+j];
-            }
+            System.arraycopy(this.values[x + i], y, values[i], 0, dim);
         }
         return new IntMatrix(values);
     }
